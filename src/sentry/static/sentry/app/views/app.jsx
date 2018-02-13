@@ -5,7 +5,6 @@ import {ThemeProvider} from 'emotion-theming';
 import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {withRouter} from 'react-router';
 import createReactClass from 'create-react-class';
 
 import {t} from '../locale';
@@ -127,13 +126,12 @@ const App = createReactClass({
   render() {
     let user = ConfigStore.get('user');
     let needsUpgrade = this.state.needsUpgrade;
-    let InstallWizardWithRouter = withRouter(InstallWizard);
 
     if (user && user.isSuperuser && needsUpgrade) {
       return (
         <div>
           <Indicators className="indicators-container" />
-          <InstallWizardWithRouter onConfigured={this.onConfigured} />
+          <InstallWizard onConfigured={this.onConfigured} />
         </div>
       );
     }
