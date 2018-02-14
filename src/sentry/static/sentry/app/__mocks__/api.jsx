@@ -55,15 +55,6 @@ class Client {
     });
   }
 
-  uniqueId() {
-    let s4 = () => {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    };
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-  }
-
   wrapCallback(id, error) {
     return (...args) => respond(Client.mockAsync, error, ...args);
   }
@@ -130,5 +121,6 @@ class Client {
 }
 
 Client.prototype.handleRequestError = RealClient.Client.prototype.handleRequestError;
+Client.prototype.uniqueId = RealClient.Client.prototype.uniqueId;
 
 export {Client};
